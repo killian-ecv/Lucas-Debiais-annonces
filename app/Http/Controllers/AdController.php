@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Categories;
+use App\Enums\Deliveries;
+use App\Enums\States;
+use App\Enums\Trades;
 use App\Http\Requests\AdRequest;
 use App\Models\Ad;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -15,7 +18,16 @@ class AdController extends Controller
     public function create(): View
     {
         $users = User::all();
-        return view('ads.create')->with('users', $users);
+        $categories = Categories::cases();
+        $states = States::cases();
+        $deliveries = Deliveries::cases();
+        $trades = Trades::cases();
+        return view('ads.create')
+            ->with('users', $users)
+            ->with('categories', $categories)
+            ->with('states', $states)
+            ->with('deliveries', $deliveries)
+            ->with('trades', $trades);
     }
 
     public function store(AdRequest $request): RedirectResponse
@@ -32,7 +44,7 @@ class AdController extends Controller
     }
 
 
-    public function index(Request $request): View
+    public function index(): View
     {
         $ads = Ad::all();
         return view('ads.index')->with('ads', $ads);
