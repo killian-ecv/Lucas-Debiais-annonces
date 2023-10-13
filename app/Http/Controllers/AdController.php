@@ -18,7 +18,6 @@ class AdController extends Controller
 {
     public function create(): View
     {
-        $users = User::all();
         $categories = Categories::cases();
         $states = States::cases();
         $deliveries = Deliveries::cases();
@@ -58,12 +57,15 @@ class AdController extends Controller
 
     public function index(): View
     {
-        $ads = Ad::all();
+        $ads = Ad::where('user_id', Auth::user()->id)->get();
         return view('ads.index')->with('ads', $ads);
     }
 
     public function edit(Ad $ad): View
     {
+        // Vérifiez si l'utilisateur est autorisé à effectuer cette action
+        $this->authorize('update', $ad);
+
         $users = User::all();
         $categories = Categories::cases();
         $states = States::cases();
