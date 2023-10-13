@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PublicController::class, 'index'])->name('public.index');
 Route::get('/ads', [PublicController::class, 'index'])->name('public.index');
-Route::get('/ads/{id}', [PublicController::class, 'show'])->name('public.ad.show');
+Route::get('/ads/{id}', [PublicController::class, 'show'])->name('public.ads.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -12,7 +12,7 @@
                     <li>{{$ad->state}}</li>
                 </ul>
                 <span class="text-xl font-bold block mb-2">{{$ad->price}}€</span>
-                <x-a href="{{route('ads.show', $ad->id)}}">Voir</x-a>
+                <x-a href="{{route('public.ads.show', $ad->id)}}">Voir</x-a>
             </div>
         @endforeach
     </div>
