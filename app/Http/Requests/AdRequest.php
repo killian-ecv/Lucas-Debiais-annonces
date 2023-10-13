@@ -33,15 +33,15 @@ class AdRequest extends FormRequest
             'price' => ['required', 'decimal:0,2'],
             'city' => ['required', 'string'],
             'state' => ['required', new Enum(States::class)],
-            'year_prod' => ['required', 'integer'],
-            'height' => ['required', 'decimal:0,2'],
-            'width' => ['required', 'decimal:0,2'],
-            'depth' => ['required', 'decimal:0,2'],
-            'weight' => ['required', 'decimal:0,2'],
-            'expiration_date' => ['required', 'date'],
+            'year_prod' => ['integer'],
+            'height' => ['decimal:0,2'],
+            'width' => ['decimal:0,2'],
+            'depth' => ['decimal:0,2'],
+            'weight' => ['decimal:0,2'],
+            'expiration_date' => ['required', 'date', 'after:today'],
             'delivery' => ['required', new Enum(Deliveries::class)],
-            'warranties' => ['required', 'string'],
-            'trade' => ['required', new Enum(Trades::class)]
+            'warranties' => ['string'],
+            'trade' => ['required', new Enum(Trades::class)],
         ];
     }
 }

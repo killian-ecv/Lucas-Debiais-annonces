@@ -8,6 +8,7 @@ use App\Enums\States;
 use App\Enums\Trades;
 use App\Http\Requests\AdRequest;
 use App\Models\Ad;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,6 @@ class AdController extends Controller
         $deliveries = Deliveries::cases();
         $trades = Trades::cases();
         return view('ads.create')
-            ->with('users', $users)
             ->with('categories', $categories)
             ->with('states', $states)
             ->with('deliveries', $deliveries)
@@ -35,6 +35,19 @@ class AdController extends Controller
         $datas = $request->all();
         $datas['user_id'] = Auth::id();
         $ad = Ad::create($datas);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+
+                $path = $image->store('images');
+
+                Image::create([
+                    'ad_id' => $ad->id,
+                    'img_url' => $path,
+                ]);
+            }
+        }
+
         return redirect()->route('ads.show', $ad->id);
     }
 
@@ -42,7 +55,6 @@ class AdController extends Controller
     {
         return view('ads.show')->with('ad', $ad);
     }
-
 
     public function index(): View
     {
@@ -53,7 +65,16 @@ class AdController extends Controller
     public function edit(Ad $ad): View
     {
         $users = User::all();
-        return view('ads.edit')->with('ad', $ad)->with('users', $users);
+        $categories = Categories::cases();
+        $states = States::cases();
+        $deliveries = Deliveries::cases();
+        $trades = Trades::cases();
+        return view('ads.edit')
+            ->with('ad', $ad)
+            ->with('categories', $categories)
+            ->with('states', $states)
+            ->with('deliveries', $deliveries)
+            ->with('trades', $trades);
     }
 
     public function update(AdRequest $request, string $id): RedirectResponse
