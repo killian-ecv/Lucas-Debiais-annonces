@@ -51,9 +51,9 @@ class AdController extends Controller
         return redirect()->route('ads.show', $ad->id);
     }
 
-    public function show(Ad $ad): View
+    public function show(Ad $ad): RedirectResponse
     {
-        return view('ads.show')->with('ad', $ad);
+        return redirect()->action([PublicController::class, 'show'], ['id' => $ad]);
     }
 
     public function index(): View

@@ -33,4 +33,8 @@
     @if(Auth::user())
         <span class="block">{{$ad->user->email}}</span>
     @endif
+
+    @foreach($ad->images as $image)
+        <img src="{{asset('storage/' . $image->img_url)}}" alt=""/>
+    @endforeach
 </x-app-layout>
