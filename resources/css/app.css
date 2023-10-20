@@ -7,3 +7,23 @@
         @apply border-0 bg-gray-800 px-4 py-2 text-white cursor-pointer;
     }
 }
+
+.caracteristique-list {
+    > li {
+        @apply flex justify-between gap-4 py-2 text-xl;
+        &:not(:last-child) {
+            @apply border-b border-black;
+        }
+    }
+}
+
+.info-list {
+    @apply md:flex items-center gap-2;
+
+    > li {
+        @apply py-2;
+        &:not(:last-child)::after {
+            @apply md:content-['●'] md:mx-4;
+        }
+    }
+}
