@@ -59,6 +59,26 @@
                                 <option {{$trade->value === $ad->trade ? 'selected' : ''}} value="{{ $trade->value }}">{{ $trade->value }}</option>
                             @endforeach
                         </x-select-input>
+
+                        @foreach($ad->images as $image)
+                            <div>
+                                <input type="hidden" name="existing_images[{{ $image->id }}][id]" value="{{ $image->id }}">
+
+                               <img src="{{asset('storage/' . $image->img_url)}}" alt="">
+
+                                <!-- Champ de téléchargement d'image pour la modification de l'image existante -->
+                                <label for="existing_images[{{ $image->id }}][new_img]">Modifier l'image:</label>
+                                <input type="file" name="existing_images[{{ $image->id }}][new_img]" accept="image/*">
+
+                                <!-- Case à cocher pour la suppression de l'image existante -->
+                                <label for="existing_images[{{ $image->id }}][delete]">Supprimer l'image:</label>
+                                <input type="checkbox" name="existing_images[{{ $image->id }}][delete]">
+                            </div>
+                        @endforeach
+
+                        <!-- Champs d'Image (multiple) pour l'ajout de nouvelles images -->
+                        <label for="images">Ajouter de nouvelles images:</label>
+                        <input type="file" name="images[]" accept="image/*" multiple>
                         <div class="mt-4">
                             <x-button-input value="Envoyer"/>
                         </div>

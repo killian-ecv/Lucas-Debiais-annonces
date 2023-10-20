@@ -12,6 +12,7 @@ use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class AdController extends Controller
@@ -38,7 +39,7 @@ class AdController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
 
-                $path = $image->store('images');
+                $path = $image->store('images', 'public');
 
                 Image::create([
                     'ad_id' => $ad->id,
@@ -84,6 +85,42 @@ class AdController extends Controller
         $datas = $request->all();
         $ad = Ad::find($id);
         $ad->update($datas);
+
+        if ($request->has('existing_images')) {
+            foreach ($request->input('existing_images') as $imageData) {
+                $imageId = $imageData['id'];
+                $image = Image::find($imageId);
+                $newImages = $request->file('existing_images');
+
+                if ($newImages && array_key_exists($imageId, $newImages)) {
+                    Storage::disk('public')->delete($image->img_url);
+                    $path = $newImages[$imageId]['new_img']->store('images', 'public');
+
+                    $image->update([
+                        'img_url' => $path,
+                    ]);
+
+                }
+
+                if (isset($imageData['delete']) && $imageData['delete'] == 'on') {
+                    Storage::disk('public')->delete($image->img_url);
+                    $image->delete();
+                }
+            }
+        }
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+
+                $path = $image->store('images', 'public');
+
+                Image::create([
+                    'ad_id' => $ad->id,
+                    'img_url' => $path,
+                ]);
+            }
+        }
+
         return redirect()->route('ads.show', $ad->id);
     }
 
