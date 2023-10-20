@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::prefix('dashboard')->group(function () {
+        Route::get('', function () {return view('dashboard');})->name('dashboard');
         Route::resource('ads', AdController::class);
     });
     Route::middleware('admin')->group(function () {
