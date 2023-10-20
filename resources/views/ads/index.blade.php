@@ -6,6 +6,7 @@
     </x-slot>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap gap-4 mt-4">
         @foreach($ads as $ad)
+            @if($ad->expiration_date > now())
             <div class="basis-[250px] flex-grow bg-white rounded-md p-4">
                 <h1 class="text-2xl font-black mb-2">{{$ad->title}}</h1>
                 <span class="px-2 py-0.5 border border-black rounded-md block w-fit text-xs mb-2">{{$ad->category}}</span>
@@ -19,6 +20,7 @@
                 <span class="text-xl font-bold block mb-2">{{$ad->price}}€</span>
                 <x-a href="{{route('ads.show', $ad->id)}}">Voir</x-a>
             </div>
+            @endif
         @endforeach
     </div>
 </x-app-layout>
