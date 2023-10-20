@@ -10,7 +10,7 @@ class PublicController extends Controller
 {
     public function index(): View
     {
-        $ads = Ad::all();
+        $ads = Ad::orderBy('id', 'desc')->get();
         return view('public.index')->with('ads', $ads);
     }
 

@@ -58,7 +58,7 @@ class AdController extends Controller
 
     public function index(): View
     {
-        $ads = Ad::where('user_id', Auth::user()->id)->get();
+        $ads = Ad::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
         return view('ads.index')->with('ads', $ads);
     }
 
