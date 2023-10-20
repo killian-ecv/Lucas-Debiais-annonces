@@ -126,6 +126,11 @@ class AdController extends Controller
 
     public function destroy(Ad $ad): RedirectResponse
     {
+        foreach ($ad->images as $image) {
+            Storage::disk('public')->delete($image->img_url);
+            $image->delete();
+        }
+
         $ad->delete();
         return redirect()->route('ads.index');
     }
