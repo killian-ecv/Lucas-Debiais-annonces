@@ -16,13 +16,12 @@ Pour exécuter le projet, il est nécessaire d'avoir installer les outils ci-des
 - Lancer ça base de donnée
 - Copier/coller le .env.example à la racine du projet et le renommer en .env
 - Remplacer les variables d'environment du .env qui concernent la base de donnée (préfixées par "DB_")
-- Lancer l'installation des dépendances composer : ```composer install ```
+- Lancer l'installation des dépendances composer : ``` composer install ```
 - Lancer l'installation des dépendances NPM : ``` npm install ```
-- Lancer l'hosting du projet à l'aide de PHP Artisan : ``` php artisan serve ```
-
-- Lancer le watcher de vite pour compiler en hotreload le style et les scripts js : ``` npm run dev ```
-
 - Effectuer une migration pour initialiser la BDD : ``` php artisan migrate ```
+- Créer une clé unique à votre projet : ``` php artisan key:generate ```
+- Lancer l'hosting du projet à l'aide de PHP Artisan : ``` php artisan serve ```
+- Lancer le watcher de vite pour compiler en hotreload le style et les scripts js : ``` npm run dev ```
 
 ## Tips 🤫
 
