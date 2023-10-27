@@ -20,6 +20,7 @@ Pour exécuter le projet, il est nécessaire d'avoir installer les outils ci-des
 - Lancer l'installation des dépendances NPM : ``` npm install ```
 - Effectuer une migration pour initialiser la BDD : ``` php artisan migrate ```
 - Créer une clé unique à votre projet : ``` php artisan key:generate ```
+- Créer le lien avec le storage local : ``` php artisan storage:link ```
 - Lancer l'hosting du projet à l'aide de PHP Artisan : ``` php artisan serve ```
 - Lancer le watcher de vite pour compiler en hotreload le style et les scripts js : ``` npm run dev ```
 
