@@ -1,5 +1,20 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-4 p-4">
+        <form method="GET" action="{{ route('public.index') }}" class="m-4 flex flex-wrap gap-4">
+            <x-select-input name="date" id="date">
+                <option value="">--Choisissez une option--</option>
+                <option value="created_at">Trier par création</option>
+                <option value="expiration_date">Trier par date d'expiration</option>
+            </x-select-input>
+            <x-select-input name="category" id="category">
+                <option value="">--Choisissez une option--</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->value }}">{{ $category->value }}</option>
+                @endforeach
+            </x-select-input>
+            <x-secondary-button type="submit" value="reset">Reset</x-secondary-button>
+            <x-primary-button type="submit">Rechercher</x-primary-button>
+        </form>
         @foreach($ads as $ad)
             @if($ad->expiration_date > now())
                 <div
