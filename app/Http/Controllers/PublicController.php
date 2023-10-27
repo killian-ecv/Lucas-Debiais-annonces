@@ -14,6 +14,7 @@ class PublicController extends Controller
         $categories = Categories::cases();
         $query = Ad::query();
 
+        // Filtre par dates
         if ($request->has('date') && $request->date == 'created_at') {
             $query->orderBy('created_at');
         } elseif ($request->has('date') && $request->date == 'expiration_date') {
@@ -22,6 +23,7 @@ class PublicController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
+        // Filtre par categories
         if ($request->has('category') && !$request->category == '') {
             $query->where('category', $request->category);
         }

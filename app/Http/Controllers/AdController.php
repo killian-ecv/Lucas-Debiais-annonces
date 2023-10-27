@@ -36,6 +36,7 @@ class AdController extends Controller
         $datas['user_id'] = Auth::id();
         $ad = Ad::create($datas);
 
+        // Créer les images en bdd et les stocker dans le storage/public/images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
 
@@ -67,7 +68,6 @@ class AdController extends Controller
         // Vérifiez si l'utilisateur est autorisé à effectuer cette action
         $this->authorize('update', $ad);
 
-        $users = User::all();
         $categories = Categories::cases();
         $states = States::cases();
         $deliveries = Deliveries::cases();
@@ -86,6 +86,7 @@ class AdController extends Controller
         $ad = Ad::find($id);
         $ad->update($datas);
 
+        // Vérifier les images à modifier en bdd et dans le storage/public/images
         if ($request->has('existing_images')) {
             foreach ($request->input('existing_images') as $imageData) {
                 $imageId = $imageData['id'];
