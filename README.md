@@ -32,6 +32,10 @@ Pour exécuter le projet, il est nécessaire d'avoir installer les outils ci-des
   le nombre d'annonces à générer)
 - Pour build le style et les scripts js : ``` npm run build ```
 
+## Fonctionnalités optionnelles
+- Design
+- Filtres
+
 ## Author ✏️
 - [Debiais Lucas](https://github.com/Lucas-Debiais)
 
