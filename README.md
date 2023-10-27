@@ -1,6 +1,6 @@
 # Projet d'évalutation Laravel (Trello-like) 💥
 
-Développement d'une plateforme d'annonce de biens d'occasion avec interface d'administration sur Laravel
+Développement d'une plateforme d'annonces de biens d'occasion avec interface d'administration sur Laravel
 
 ## Pré-requis 🎯
 Pour exécuter le projet, il est nécessaire d'avoir installer les outils ci-dessous :
@@ -13,7 +13,7 @@ Pour exécuter le projet, il est nécessaire d'avoir installer les outils ci-des
 
 - Copier le projet :``` git clone https://github.com/Lucas-Debiais/vinted-like.git ```
 
-- Lancer ça base de donnée
+- Lancer sa base de donnée
 - Copier/coller le .env.example à la racine du projet et le renommer en .env
 - Remplacer les variables d'environment du .env qui concernent la base de donnée (préfixées par "DB_")
 - Lancer l'installation des dépendances composer : ``` composer install ```
@@ -26,6 +26,7 @@ Pour exécuter le projet, il est nécessaire d'avoir installer les outils ci-des
 ## Tips 🤫
 
 - Pour créer 10 annonces avec des données aléatoires : ``` php artisan db:seed ```
+  - ⚠️ Au moins 1 utilisateur est requis pour utiliser cette commande
   - (modifier le seeder "database/seeders/DatabaseSeeder.php" : Ad::factory(<i>number</i>)->create(); , si besoin de changer
   le nombre d'annonces à générer)
 - Pour build le style et les scripts js : ``` npm run build ```
