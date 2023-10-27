@@ -2,9 +2,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-4 p-4">
         @foreach($ads as $ad)
             @if($ad->expiration_date > now())
-                <div class="border border-gray-200 bg-white flex md:flex-row flex-col md:items-center gap-4 rounded-md relative">
-                    @if(!($ad->images)->isEmpty())
-                        <div class="swiper swiper-imgs-ad rounded-md bg-white md:w-1/4 w-full !mx-0">
+                <div
+                    class="border border-gray-200 bg-white flex md:flex-row flex-col md:items-center gap-4 rounded-md relative">
+                    <div class="swiper swiper-imgs-ad rounded-md bg-white md:w-1/4 w-full !mx-0">
+                        @if(!($ad->images)->isEmpty())
                             <div class="swiper-wrapper items-center">
                                 @foreach($ad->images as $image)
                                     <div class="swiper-slide">
@@ -15,8 +16,11 @@
                                 @endforeach
                             </div>
                             <div class="swiper-pagination"></div>
-                        </div>
-                    @endif
+                        @else
+                            <img src="https://placehold.co/500x250" alt="">
+
+                        @endif
+                    </div>
                     <div class="p-4">
 
                         <h1 class="text-2xl font-black mb-2">{{$ad->title}}</h1>

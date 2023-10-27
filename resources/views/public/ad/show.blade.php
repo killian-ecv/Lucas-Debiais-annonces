@@ -20,18 +20,22 @@
         </div>
         <div class="flex md:flex-row flex-col gap-20">
             <div class="swiper swiper-imgs-ad rounded-md bg-white max-w-[500px] !mx-0 self-center w-full">
-                <div class="swiper-wrapper items-center">
-                    @foreach($ad->images as $image)
-                        <div class="swiper-slide">
-                            <img class="w-full max-h-[500px] object-contain"
-                                 src="{{asset('storage/' . $image->img_url)}}"
-                                 alt=""/>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+                @if (!($ad->images)->isEmpty())
+                    <div class="swiper-wrapper items-center">
+                        @foreach($ad->images as $image)
+                            <div class="swiper-slide">
+                                <img class="w-full max-h-[500px] object-contain"
+                                     src="{{asset('storage/' . $image->img_url)}}"
+                                     alt=""/>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                @else
+                    <img src="https://placehold.co/500x500" alt="">
+                @endif
             </div>
             <div class="grow flex flex-col gap-12">
                 <div class="flex md:flex-row flex-col gap-12">
@@ -72,9 +76,8 @@
                         @endif
                     </div>
                     <div class="grow md:w-0">
-                        <h2 class="text-4xl font-medium mb-5">Lien de vente</h2>
+                        <h2 class="text-4xl font-medium mb-5">Lieu de vente</h2>
                         <p class="mb-2">{{$ad->city}}</p>
-                        <div class="rounded text-white w-full bg-black grid place-items-center">map</div>
                     </div>
                 </div>
                 @if(Auth::user())
