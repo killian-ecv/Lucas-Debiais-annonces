@@ -1,16 +1,15 @@
-# Projet d'évalutation Laravel (Trello-like)
+# Projet d'évalutation Laravel (Trello-like) 💥
 
 Développement d'une plateforme d'annonce de biens d'occasion avec interface d'administration sur Laravel
 
-## Pré-requis
-
+## Pré-requis 🎯
 Pour exécuter le projet, il est nécessaire d'avoir installer les outils ci-dessous :
 
 - [NodeJS](https://nodejs.org)
 - [Composer](https://getcomposer.org/)
 - Un service qui fait tourner une BDD (exemple : [WAMP](https://www.wampserver.com/))
 
-## Démarage
+## Démarage 🚀
 
 - Copier le projet :``` git clone https://github.com/Lucas-Debiais/vinted-like.git ```
 
@@ -25,14 +24,14 @@ Pour exécuter le projet, il est nécessaire d'avoir installer les outils ci-des
 
 - Effectuer une migration pour initialiser la BDD : ``` php artisan migrate ```
 
-## Tips
+## Tips 🤫
 
 - Pour créer 10 annonces avec des données aléatoires : ``` php artisan db:seed ```
   - (modifier le seeder "database/seeders/DatabaseSeeder.php" : Ad::factory(<i>number</i>)->create(); , si besoin de changer
   le nombre d'annonces à générer)
 - Pour build le style et les scripts js : ``` npm run build ```
 
-## Author
+## Author ✏️
 - [Debiais Lucas](https://github.com/Lucas-Debiais)
 
 
