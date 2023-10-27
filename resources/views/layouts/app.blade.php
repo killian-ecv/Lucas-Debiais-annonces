@@ -18,6 +18,8 @@
 <div class="min-h-screen bg-gray-100">
     @if(Auth::user())
         @include('layouts.navigation')
+    @else
+        @include('layouts.unlog-navigation')
     @endif
 
     <!-- Page Heading -->
